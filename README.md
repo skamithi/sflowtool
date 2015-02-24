@@ -1,5 +1,5 @@
-sflowtool
-=========
+# sflowtool
+
 
 This tool receives sFlow data, and generates either a simple-to-parse tagged-ASCII output,
 or binary output in tcpdump(1) format. It can also generate Cisco NetFlow version 5 datagrams
@@ -10,41 +10,51 @@ Please read the licence terms in ./COPYING.
 For more details on the sFlow data format, see http://www.sflow.org.
 
 
-Usage examples
-==============
+## Usage examples
 
 If sFlow is arriving on port 6343, you can pretty-print the data like this:
-
-% ./sflowtool -p 6343
-
+```
+$ ./sflowtool -p 6343
+```
 or get a line-by-line output like this:
 
-% ./sflowtool -p 6434 -l
+```
+$ ./sflowtool -p 6434 -l
+```
 
 In a typical application, this output would be parsed by an awk or perl script, perhaps to
 extract MAC->IP address-mappings or to extract a particular counter for trending. The
 usage might then look more like this:
 
-% ./sflowtool -p 6343 | my_perl_script.pl > output
+```
+$ ./sflowtool -p 6343 | my_perl_script.pl > output
+```
 
 Alternatively, you can show packet decodes like this:
-
-% ./sflowtool -p 6343 -t | tcpdump -r -
+```
+$ ./sflowtool -p 6343 -t | tcpdump -r -
+```
 
 To forward Cisco NetFlow v5 records to UDP port 9991 on host collector.mysite.com, the
 options would be:
 
-% ./sflowtool -p 6343 -c collector.mysite.com -d 9991
+```
+$ ./sflowtool -p 6343 -c collector.mysite.com -d 9991
+```
 
 If you compiled with -DSPOOFSOURCE, then you have the option of "spoofing" the IP source
 address of the netflow packets to match the IP address(es) of the original sflow agent(s)...
 
-% ./sflowtool -p 6343 -c collector.mysite.com -d 9991 -S
+```
+$ ./sflowtool -p 6343 -c collector.mysite.com -d 9991 -S
+```
 
 To replicate the input sflow stream to several collectors, use the "-f host/port" option
 like this:
 
-% ./sflowtool -p 6343 -f localhost/7777 -f localhost/7778 -f collector.mysite.com/6343
+```
+$ ./sflowtool -p 6343 -f localhost/7777 -f localhost/7778 -f collector.mysite.com/6343
+```
 
 
 Example Output
@@ -56,6 +66,7 @@ the next. The first field in a datagram is always the "unixSecondsUTC" field, an
 first field in a flow or counters sample is always the "sampleSequenceNo" field. In
 this example, the datagram held two flow-samples and two counters-samples. Comments
 have been added in <<>> brackets.  These are not found in the output.
+```
 
 unixSecondsUTC 991362247      <<this is always the first field of a new datagram>>
 datagramVersion 2
@@ -161,20 +172,20 @@ ifOutBroadcastPkts 153
 ifOutDiscards 0
 ifOutErrors 0
 ifPromiscuousMode 0
+```
 
+## Other extendedTypes
 
-Other extendedTypes
-===================
 
 If your sFlow agent is running BGP, you may also see GATEWAY extendedType sections like this:
-
+```
 extendedType GATEWAY
 my_as 65001
 src_as 0
 src_peer_as 0
 dst_as_path_len 3
 dst_as_path 65000-2828-4908
-
+```
 
 The SWITCH, USER and URL extendedTypes may also appear. The SWITCH extendedType provides
 information on input and output VLANs and priorities. The USER extendedType provides
@@ -184,14 +195,16 @@ URL was for the flow.  For more information, see the published sFlow documentati
 http://www.sflow.org.
 
 
-line-by-line csv output
-=======================
+## line-by-line csv output
+
 If you run sflowtool using the "-l" option then only one row of output will be generated
 for each flow or counter sample. It will look something like this:
 
+```
 [root@server src]# ./sflowtool -l
 CNTR,10.0.0.254,17,6,100000000,0,2147483648,175283006,136405187,2578019,297011,0,3,0,0,0,0,0,0,0,1
 FLOW,10.0.0.254,0,0,00902773db08,001083265e00,0x0800,0,0,10.0.0.1,10.0.0.254,17,0x00,64,35690,161,0x00,143,125,80
+```
 
 The counter samples are indicated with the "CNTR" entry in the first column.
 The second column is the agent address.  The remaining columns are the
@@ -199,7 +212,7 @@ fields from the generic counters structure (see SFLIf_counters in sflow.h).
 
 The flow samples are indicated with the "FLOW" entry in the first column.
 The second column is the agent address. The remaining columns are:
-
+```
 inputPort
 outputPort
 src_MAC
@@ -218,8 +231,9 @@ tcp_flags
 packet_size
 IP_size
 sampling_rate
+```
 
----
+## AUTHOR:
 ----------------------------------------
 Neil McKee (mailto:neil.mckee@inmon.com)
 InMon Corp. http://www.inmon.com
