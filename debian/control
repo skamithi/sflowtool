@@ -7,7 +7,7 @@ Standards-Version: 3.9.4
 Homepage: http://inmon.com
 
 Package: sflowtool
-Architecture: all
+Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: collects and can change received Sflow data
   This tool receives sFlow data, and generates
