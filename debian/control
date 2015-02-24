@@ -1,0 +1,22 @@
+Source: sflowtool
+Section: admin
+Priority: optional
+Maintainer: The Sflow community
+Build-Depends: debhelper (>= 8.0.0), autotools-dev
+Standards-Version: 3.9.4
+Homepage: http://inmon.com
+#Vcs-Git: git://git.debian.org/collab-maint/sflowtool.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/sflowtool.git;a=summary
+
+Package: sflowtool
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: collects and can change received Sflow data
+This tool receives sFlow data, and generates either a simple-to-parse tagged-ASCII output,
+or binary output in tcpdump(1) format.
+
+Please read the licence terms in ./COPYING.
+
+For more details on the sFlow data format, see http://www.sflow.org.
+
+
