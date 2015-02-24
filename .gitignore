@@ -1,0 +1,6 @@
+stamp-h1
+debian/files
+debian/sflowtool*
+config.*
+Makefile
+src/
