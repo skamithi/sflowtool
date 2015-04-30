@@ -1,5 +1,11 @@
+sflowtool (3.35) unstable; urgency=low
+
+  * Upgrade to 3.35
+
+ -- Stanley Karunditu <stanley@linuxsimba.com>  Thu, 30 Apr 2015 10:05:20 -0400
+
 sflowtool (3.34) unstable; urgency=low
 
   * Initial Source package build
 
- -- Stanley Kamithi <stanley@juaconsulting.com>  Thu, 19 Feb 2015 22:10:18 -0500
+ -- Stanley Karunditu <stanley@linuxsimba.com>  Thu, 19 Feb 2015 22:10:18 -0500
