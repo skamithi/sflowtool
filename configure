@@ -2138,7 +2138,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 PACKAGE=sflowtool
-VERSION=3.34
+VERSION=3.35
 am__api_version='1.12'
 
 ac_aux_dir=

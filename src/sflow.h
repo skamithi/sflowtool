@@ -1070,6 +1070,142 @@ typedef struct _SFLHost_gpu_nvml {
   uint32_t fan_speed;     /* %. maximum across devices - see nvmlDeviceGetFanSpeed */
 } SFLHost_gpu_nvml;
 
+/* Broadcom switch ASIC table utilizations */
+/* opaque = counter_data; enterprise = 4413 (Broadcom); format = 3 */
+typedef struct {
+  uint32_t bcm_host_entries;
+  uint32_t bcm_host_entries_max;
+  uint32_t bcm_ipv4_entries;
+  uint32_t bcm_ipv4_entries_max;
+  uint32_t bcm_ipv6_entries;
+  uint32_t bcm_ipv6_entries_max;
+  uint32_t bcm_ipv4_ipv6_entries;
+  uint32_t bcm_ipv4_ipv6_entries_max;
+  uint32_t bcm_long_ipv6_entries;
+  uint32_t bcm_long_ipv6_entries_max;
+  uint32_t bcm_total_routes;
+  uint32_t bcm_total_routes_max;
+  uint32_t bcm_ecmp_nexthops;
+  uint32_t bcm_ecmp_nexthops_max;
+  uint32_t bcm_mac_entries;
+  uint32_t bcm_mac_entries_max;
+  uint32_t bcm_ipv4_neighbors;
+  uint32_t bcm_ipv6_neighbors;
+  uint32_t bcm_ipv4_routes;
+  uint32_t bcm_ipv6_routes;
+  uint32_t bcm_acl_ingress_entries;
+  uint32_t bcm_acl_ingress_entries_max;
+  uint32_t bcm_acl_ingress_counters;
+  uint32_t bcm_acl_ingress_counters_max;
+  uint32_t bcm_acl_ingress_meters;
+  uint32_t bcm_acl_ingress_meters_max;
+  uint32_t bcm_acl_ingress_slices;
+  uint32_t bcm_acl_ingress_slices_max;
+  uint32_t bcm_acl_egress_entries;
+  uint32_t bcm_acl_egress_entries_max;
+  uint32_t bcm_acl_egress_counters;
+  uint32_t bcm_acl_egress_counters_max;
+  uint32_t bcm_acl_egress_meters;
+  uint32_t bcm_acl_egress_meters_max;
+  uint32_t bcm_acl_egress_slices;
+  uint32_t bcm_acl_egress_slices_max;
+} SFLBCM_tables;
+
+  ///////////// TCP/UDP/ICMP from MIB-II ///////////////////////
+
+  /* IP Group - see MIB-II */
+  /* opaque = counter_data; enterprise = 0; format = 2007 */
+
+  typedef struct _SFLHost_IP_counters {
+    uint32_t ipForwarding;
+    uint32_t ipDefaultTTL;
+    uint32_t ipInReceives;
+    uint32_t ipInHdrErrors;
+    uint32_t ipInAddrErrors;
+    uint32_t ipForwDatagrams;
+    uint32_t ipInUnknownProtos;
+    uint32_t ipInDiscards;
+    uint32_t ipInDelivers;
+    uint32_t ipOutRequests;
+    uint32_t ipOutDiscards;
+    uint32_t ipOutNoRoutes;
+    uint32_t ipReasmTimeout;
+    uint32_t ipReasmReqds;
+    uint32_t ipReasmOKs;
+    uint32_t ipReasmFails;
+    uint32_t ipFragOKs;
+    uint32_t ipFragFails;
+    uint32_t ipFragCreates;
+  } SFLHost_IP_counters;
+  
+  /* ICMP Group - see MIB-II */
+  /* opaque = counter_data; enterprise = 0; format = 2008 */
+
+  typedef struct _SFLHost_ICMP_counters {
+    uint32_t icmpInMsgs;
+    uint32_t icmpInErrors;
+    uint32_t icmpInDestUnreachs;
+    uint32_t icmpInTimeExcds;
+    uint32_t icmpInParamProbs;
+    uint32_t icmpInSrcQuenchs;
+    uint32_t icmpInRedirects;
+    uint32_t icmpInEchos;
+    uint32_t icmpInEchoReps;
+    uint32_t icmpInTimestamps;
+    uint32_t icmpInAddrMasks;
+    uint32_t icmpInAddrMaskReps;
+    uint32_t icmpOutMsgs;
+    uint32_t icmpOutErrors;
+    uint32_t icmpOutDestUnreachs;
+    uint32_t icmpOutTimeExcds;
+    uint32_t icmpOutParamProbs;
+    uint32_t icmpOutSrcQuenchs;
+    uint32_t icmpOutRedirects;
+    uint32_t icmpOutEchos;
+    uint32_t icmpOutEchoReps;
+    uint32_t icmpOutTimestamps;
+    uint32_t icmpOutTimestampReps;
+    uint32_t icmpOutAddrMasks;
+    uint32_t icmpOutAddrMaskReps;
+  } SFLHost_ICMP_counters;
+
+  /* TCP Group - see MIB-II */
+  /* opaque = counter_data; enterprise = 0; format = 2009 */
+
+  typedef struct _SFLHost_TCP_counters {
+    uint32_t tcpRtoAlgorithm;
+    uint32_t tcpRtoMin;
+    uint32_t tcpRtoMax;
+    uint32_t tcpMaxConn;
+    uint32_t tcpActiveOpens;
+    uint32_t tcpPassiveOpens;
+    uint32_t tcpAttemptFails;
+    uint32_t tcpEstabResets;
+    uint32_t tcpCurrEstab;
+    uint32_t tcpInSegs;
+    uint32_t tcpOutSegs;
+    uint32_t tcpRetransSegs;
+    uint32_t tcpInErrs;
+    uint32_t tcpOutRsts;
+    uint32_t tcpInCsumErrors;
+  } SFLHost_TCP_counters;
+
+  /* UDP Group - see MIB-II */
+  /* opaque = counter_data; enterprise = 0; format = 2010 */
+
+  typedef struct _SFLHost_UDP_counters {
+    uint32_t udpInDatagrams;
+    uint32_t udpNoPorts;
+    uint32_t udpInErrors;
+    uint32_t udpOutDatagrams;
+    uint32_t udpRcvbufErrors;
+    uint32_t udpSndbufErrors;
+    uint32_t udpInCsumErrors;
+  } SFLHost_UDP_counters;
+
+  /* memcache */
+  /* opaque = counter_data; enterprise = 0; format = 2204 */
+
 typedef struct _SFLMemcache_counters {
   uint32_t uptime;          /* not in 2204 */
   uint32_t rusage_user;     /* not in 2204 */
@@ -1108,6 +1244,9 @@ typedef struct _SFLMemcache_counters {
   uint64_t bytes;
   uint64_t limit_maxbytes; /* converted to 64-bit for structure 2204 */
 } SFLMemcache_counters;
+
+  /* http */
+  /* opaque = counter_data; enterprise = 0; format = 2201 */
 
 typedef struct _SFLHTTP_counters {
   uint32_t method_option_count;
@@ -1300,6 +1439,10 @@ enum SFLCounters_type_tag {
   SFLCOUNTERS_HOST_MEM     = 2004, /* host memory  */
   SFLCOUNTERS_HOST_DSK     = 2005, /* host storage I/O  */
   SFLCOUNTERS_HOST_NIO     = 2006, /* host network I/O */
+  SFLCOUNTERS_HOST_IP      = 2007,
+  SFLCOUNTERS_HOST_ICMP    = 2008,
+  SFLCOUNTERS_HOST_TCP     = 2009,
+  SFLCOUNTERS_HOST_UDP     = 2010,
   SFLCOUNTERS_HOST_VRT_NODE = 2100, /* host virt node */
   SFLCOUNTERS_HOST_VRT_CPU  = 2101, /* host virt cpu */
   SFLCOUNTERS_HOST_VRT_MEM  = 2102, /* host virt mem */
@@ -1315,6 +1458,7 @@ enum SFLCounters_type_tag {
   SFLCOUNTERS_VDI           = 2205,
   SFLCOUNTERS_APP_WORKERS   = 2206,
   SFLCOUNTERS_HOST_GPU_NVML = (5703 << 12) + 1, /* = 23359489 */
+  SFLCOUNTERS_BCM_TABLES    = (4413 << 12) + 3,
 };
 
 typedef union _SFLCounters_type {
@@ -1333,12 +1477,17 @@ typedef union _SFLCounters_type {
   SFLHost_mem_counters host_mem;
   SFLHost_dsk_counters host_dsk;
   SFLHost_nio_counters host_nio;
+  SFLHost_IP_counters host_ip;
+  SFLHost_ICMP_counters host_icmp;
+  SFLHost_TCP_counters host_tcp;
+  SFLHost_UDP_counters host_udp;
   SFLHost_vrt_node_counters host_vrt_node;
   SFLHost_vrt_cpu_counters host_vrt_cpu;
   SFLHost_vrt_mem_counters host_vrt_mem;
   SFLHost_vrt_dsk_counters host_vrt_dsk;
   SFLHost_vrt_nio_counters host_vrt_nio;
   SFLHost_gpu_nvml host_gpu_nvml;
+  SFLBCM_tables bcm_tables;
   SFLMemcache_counters memcache;
   SFLHTTP_counters http;
   SFLJVM_ID jvm;

@@ -1,3 +1,6 @@
+Feb-24-2015:
+       3.35: - add Broadcom ASIC counters structure
+             - add TCP/IP counters structure
 Dec-04-2014:
        3.34: - decode new counters in host cpu struct (steal, guest, and guest_nice)
 Dec-01-2014:

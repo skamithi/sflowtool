@@ -3196,7 +3196,7 @@ static void readCounters_host_dsk(SFSample *sample)
   sf_log_next64(sample, "disk_bytes_written");
   sf_log_next32(sample, "disk_write_time");
 }
- 
+
 /*_________________---------------------------__________________
   _________________  readCounters_host_nio    __________________
   -----------------___________________________------------------
@@ -3212,6 +3212,108 @@ static void readCounters_host_nio(SFSample *sample)
   sf_log_next32(sample, "nio_pkts_out");
   sf_log_next32(sample, "nio_errs_out");
   sf_log_next32(sample, "nio_drops_out");
+}
+
+/*_________________---------------------------__________________
+  _________________  readCounters_host_ip     __________________
+  -----------------___________________________------------------
+*/
+
+static void readCounters_host_ip(SFSample *sample)
+{
+  sf_log_next32(sample, "ipForwarding");
+  sf_log_next32(sample, "ipDefaultTTL");
+  sf_log_next32(sample, "ipInReceives");
+  sf_log_next32(sample, "ipInHdrErrors");
+  sf_log_next32(sample, "ipInAddrErrors");
+  sf_log_next32(sample, "ipForwDatagrams");
+  sf_log_next32(sample, "ipInUnknownProtos");
+  sf_log_next32(sample, "ipInDiscards");
+  sf_log_next32(sample, "ipInDelivers");
+  sf_log_next32(sample, "ipOutRequests");
+  sf_log_next32(sample, "ipOutDiscards");
+  sf_log_next32(sample, "ipOutNoRoutes");
+  sf_log_next32(sample, "ipReasmTimeout");
+  sf_log_next32(sample, "ipReasmReqds");
+  sf_log_next32(sample, "ipReasmOKs");
+  sf_log_next32(sample, "ipReasmFails");
+  sf_log_next32(sample, "ipFragOKs");
+  sf_log_next32(sample, "ipFragFails");
+  sf_log_next32(sample, "ipFragCreates");
+}
+
+/*_________________---------------------------__________________
+  _________________  readCounters_host_icmp   __________________
+  -----------------___________________________------------------
+*/
+
+static void readCounters_host_icmp(SFSample *sample)
+{
+  sf_log_next32(sample, "icmpInMsgs");
+  sf_log_next32(sample, "icmpInErrors");
+  sf_log_next32(sample, "icmpInDestUnreachs");
+  sf_log_next32(sample, "icmpInTimeExcds");
+  sf_log_next32(sample, "icmpInParamProbs");
+  sf_log_next32(sample, "icmpInSrcQuenchs");
+  sf_log_next32(sample, "icmpInRedirects");
+  sf_log_next32(sample, "icmpInEchos");
+  sf_log_next32(sample, "icmpInEchoReps");
+  sf_log_next32(sample, "icmpInTimestamps");
+  sf_log_next32(sample, "icmpInAddrMasks");
+  sf_log_next32(sample, "icmpInAddrMaskReps");
+  sf_log_next32(sample, "icmpOutMsgs");
+  sf_log_next32(sample, "icmpOutErrors");
+  sf_log_next32(sample, "icmpOutDestUnreachs");
+  sf_log_next32(sample, "icmpOutTimeExcds");
+  sf_log_next32(sample, "icmpOutParamProbs");
+  sf_log_next32(sample, "icmpOutSrcQuenchs");
+  sf_log_next32(sample, "icmpOutRedirects");
+  sf_log_next32(sample, "icmpOutEchos");
+  sf_log_next32(sample, "icmpOutEchoReps");
+  sf_log_next32(sample, "icmpOutTimestamps");
+  sf_log_next32(sample, "icmpOutTimestampReps");
+  sf_log_next32(sample, "icmpOutAddrMasks");
+  sf_log_next32(sample, "icmpOutAddrMaskReps");
+}
+
+/*_________________---------------------------__________________
+  _________________  readCounters_host_tcp     __________________
+  -----------------___________________________------------------
+*/
+
+static void readCounters_host_tcp(SFSample *sample)
+{
+  sf_log_next32(sample, "tcpRtoAlgorithm");
+  sf_log_next32(sample, "tcpRtoMin");
+  sf_log_next32(sample, "tcpRtoMax");
+  sf_log_next32(sample, "tcpMaxConn");
+  sf_log_next32(sample, "tcpActiveOpens");
+  sf_log_next32(sample, "tcpPassiveOpens");
+  sf_log_next32(sample, "tcpAttemptFails");
+  sf_log_next32(sample, "tcpEstabResets");
+  sf_log_next32(sample, "tcpCurrEstab");
+  sf_log_next32(sample, "tcpInSegs");
+  sf_log_next32(sample, "tcpOutSegs");
+  sf_log_next32(sample, "tcpRetransSegs");
+  sf_log_next32(sample, "tcpInErrs");
+  sf_log_next32(sample, "tcpOutRsts");
+  sf_log_next32(sample, "tcpInCsumErrors");
+}
+
+/*_________________---------------------------__________________
+  _________________  readCounters_host_udp    __________________
+  -----------------___________________________------------------
+*/
+
+static void readCounters_host_udp(SFSample *sample)
+{
+  sf_log_next32(sample, "udpInDatagrams");
+  sf_log_next32(sample, "udpNoPorts");
+  sf_log_next32(sample, "udpInErrors");
+  sf_log_next32(sample, "udpOutDatagrams");
+  sf_log_next32(sample, "udpRcvbufErrors");
+  sf_log_next32(sample, "udpSndbufErrors");
+  sf_log_next32(sample, "udpInCsumErrors");
 }
 
 /*_________________-----------------------------__________________
@@ -3302,6 +3404,51 @@ static void readCounters_host_gpu_nvml(SFSample *sample)
   sf_log_next32(sample, "nvml_energy_mJ");
   sf_log_next32(sample, "nvml_temperature_C");
   sf_log_next32(sample, "nvml_fan_speed_pc");
+}
+
+/*_________________------------------------------__________________
+  _________________  readCounters_bcm_tables     __________________
+  -----------------______________________________------------------
+*/
+
+static void readCounters_bcm_tables(SFSample *sample)
+{
+  sf_log_next32(sample, "bcm_asic_host_entries");
+  sf_log_next32(sample, "bcm_host_entries_max");
+  sf_log_next32(sample, "bcm_ipv4_entries");
+  sf_log_next32(sample, "bcm_ipv4_entries_max");
+  sf_log_next32(sample, "bcm_ipv6_entries");
+  sf_log_next32(sample, "bcm_ipv6_entries_max");
+  sf_log_next32(sample, "bcm_ipv4_ipv6_entries");
+  sf_log_next32(sample, "bcm_ipv4_ipv6_entries_max");
+  sf_log_next32(sample, "bcm_long_ipv6_entries");
+  sf_log_next32(sample, "bcm_long_ipv6_entries_max");
+  sf_log_next32(sample, "bcm_total_routes");
+  sf_log_next32(sample, "bcm_total_routes_max");
+  sf_log_next32(sample, "bcm_ecmp_nexthops");
+  sf_log_next32(sample, "bcm_ecmp_nexthops_max");
+  sf_log_next32(sample, "bcm_mac_entries");
+  sf_log_next32(sample, "bcm_mac_entries_max");
+  sf_log_next32(sample, "bcm_ipv4_neighbors");
+  sf_log_next32(sample, "bcm_ipv6_neighbors");
+  sf_log_next32(sample, "bcm_ipv4_routes");
+  sf_log_next32(sample, "bcm_ipv6_routes");
+  sf_log_next32(sample, "bcm_acl_ingress_entries");
+  sf_log_next32(sample, "bcm_acl_ingress_entries_max");
+  sf_log_next32(sample, "bcm_acl_ingress_counters");
+  sf_log_next32(sample, "bcm_acl_ingress_counters_max");
+  sf_log_next32(sample, "bcm_acl_ingress_meters");
+  sf_log_next32(sample, "bcm_acl_ingress_meters_max");
+  sf_log_next32(sample, "bcm_acl_ingress_slices");
+  sf_log_next32(sample, "bcm_acl_ingress_slices_max");
+  sf_log_next32(sample, "bcm_acl_egress_entries");
+  sf_log_next32(sample, "bcm_acl_egress_entries_max");
+  sf_log_next32(sample, "bcm_acl_egress_counters");
+  sf_log_next32(sample, "bcm_acl_egress_counters_max");
+  sf_log_next32(sample, "bcm_acl_egress_meters");
+  sf_log_next32(sample, "bcm_acl_egress_meters_max");
+  sf_log_next32(sample, "bcm_acl_egress_slices");
+  sf_log_next32(sample, "bcm_acl_egress_slices_max");
 }
 
 /*_________________----------------------------__________________
@@ -3684,12 +3831,17 @@ static void readCountersSample(SFSample *sample, int expanded)
       case SFLCOUNTERS_HOST_MEM: readCounters_host_mem(sample); break;
       case SFLCOUNTERS_HOST_DSK: readCounters_host_dsk(sample); break;
       case SFLCOUNTERS_HOST_NIO: readCounters_host_nio(sample); break;
+      case SFLCOUNTERS_HOST_IP: readCounters_host_ip(sample); break;
+      case SFLCOUNTERS_HOST_ICMP: readCounters_host_icmp(sample); break;
+      case SFLCOUNTERS_HOST_TCP: readCounters_host_tcp(sample); break;
+      case SFLCOUNTERS_HOST_UDP: readCounters_host_udp(sample); break;
       case SFLCOUNTERS_HOST_VRT_NODE: readCounters_host_vnode(sample); break;
       case SFLCOUNTERS_HOST_VRT_CPU: readCounters_host_vcpu(sample); break;
       case SFLCOUNTERS_HOST_VRT_MEM: readCounters_host_vmem(sample); break;
       case SFLCOUNTERS_HOST_VRT_DSK: readCounters_host_vdsk(sample); break;
       case SFLCOUNTERS_HOST_VRT_NIO: readCounters_host_vnio(sample); break;
       case SFLCOUNTERS_HOST_GPU_NVML: readCounters_host_gpu_nvml(sample); break;
+      case SFLCOUNTERS_BCM_TABLES: readCounters_bcm_tables(sample); break;
       case SFLCOUNTERS_MEMCACHE: readCounters_memcache(sample); break;
       case SFLCOUNTERS_MEMCACHE2: readCounters_memcache2(sample); break;
       case SFLCOUNTERS_HTTP: readCounters_http(sample); break;
