@@ -9,6 +9,20 @@ Please read the licence terms in ./COPYING.
 
 For more details on the sFlow data format, see http://www.sflow.org.
 
+## Installation
+
+On Debian systems
+
+*  Create a GPG key for the user doing the compile (look that up on the web)
+```
+
+# apt-get install git-buildpackage
+# git clone github.com/skamithi/sflowtool sflowtool-3.35
+# cd sflowtool-3.35
+# git-buildpackage
+
+```
+
 
 ## Usage examples
 
